@@ -1,0 +1,137 @@
+### FastAPI Application - HTTP Test Queries
+
+# Base URL - Update this to match your server
+@baseUrl = http://localhost:8000
+
+### 1. Root Endpoint
+GET {{baseUrl}}/
+Content-Type: application/json
+
+###
+
+### 2. Create a new user
+POST {{baseUrl}}/users/
+Content-Type: application/json
+
+{
+    "email": "john.doe@example.com",
+    "username": "johndoe",
+    "full_name": "John Doe",
+    "is_active": true
+}
+
+###
+
+### 3. Create another user for testing
+POST {{baseUrl}}/users/
+Content-Type: application/json
+
+{
+    "email": "jane.smith@example.com",
+    "username": "janesmith",
+    "full_name": "Jane Smith",
+    "is_active": true
+}
+
+###
+
+### 4. Get all users (default pagination)
+GET {{baseUrl}}/users/
+Content-Type: application/json
+
+###
+
+### 5. Get all users with custom pagination
+GET {{baseUrl}}/users/?skip=0&limit=10
+Content-Type: application/json
+
+###
+
+### 6. Get a specific user by ID (replace {user_id} with actual ID)
+GET {{baseUrl}}/users/1
+Content-Type: application/json
+
+###
+
+### 7. Get another user by ID
+GET {{baseUrl}}/users/2
+Content-Type: application/json
+
+###
+
+### 8. Update a user (replace {user_id} with actual ID)
+PUT {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+    "email": "john.updated@example.com",
+    "username": "johnupdated",
+    "full_name": "John Doe Updated",
+    "is_active": true
+}
+
+###
+
+### 9. Partial update of a user (only some fields)
+PUT {{baseUrl}}/users/2
+Content-Type: application/json
+
+{
+    "full_name": "Jane Smith Updated",
+    "is_active": false
+}
+
+###
+
+### 10. Delete a user (replace {user_id} with actual ID)
+DELETE {{baseUrl}}/users/1
+Content-Type: application/json
+
+###
+
+### 11. Try to get a non-existent user (should return 404)
+GET {{baseUrl}}/users/999
+Content-Type: application/json
+
+###
+
+### 12. Try to update a non-existent user (should return 404)
+PUT {{baseUrl}}/users/999
+Content-Type: application/json
+
+{
+    "email": "nonexistent@example.com",
+    "username": "nonexistent"
+}
+
+###
+
+### 13. Try to delete a non-existent user (should return 404)
+DELETE {{baseUrl}}/users/999
+Content-Type: application/json
+
+###
+
+### 14. Create a user with minimal data (only required fields)
+POST {{baseUrl}}/users/
+Content-Type: application/json
+
+{
+    "email": "minimal@example.com",
+    "username": "minimaluser"
+}
+
+###
+
+### 15. Create a user with all optional fields
+POST {{baseUrl}}/users/
+Content-Type: application/json
+
+{
+    "email": "complete@example.com",
+    "username": "completeuser",
+    "full_name": "Complete User Profile",
+    "is_active": false
+}
+
+###
