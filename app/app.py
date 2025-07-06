@@ -3,8 +3,8 @@ from .api import users_router
 from .database import engine
 from .models import Base
 
-# Create tables
-Base.metadata.create_all(bind=engine)
+# Note: Tables are now created by Alembic migrations, not here
+# Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Alembic Tutorial API", version="1.0.0")
 
